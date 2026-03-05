@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mini Social Media</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        h2 {
+            background-color: #1e3a8a;
+            color: #ffffff;
+            padding: 15px;
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .feed-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 10px;
+        }
+
+        .post-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 15px 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            text-align: left;
+        }
+
+        .username {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .content {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .like-btn {
+            text-decoration: none;
+            font-size: 14px;
+            color: #dc2626;
+            font-weight: 500;
+        }
+
+        .like-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body align="center">
+
+    <h2>Feed</h2>
+
+    <div class="feed-container">
+        {% for post in posts %}
+        <div class="post-card">
+            <span class="username">{{ post.user.username }}</span>
+            <p class="content">{{ post.content }}</p>
+
+            <a class="like-btn" href="{% url 'like' post.id %}">
+                ❤️ ({{ post.likes.count }})
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+
+</html>
